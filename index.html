@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Kirito">
+  <meta name="description" content="Ajedrez multijugador online en el navegador. Creado por Kirito.">
+  <title>Ajedrez Kirito</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>♞</text></svg>">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <h1><span class="logo">♞</span> Ajedrez Kirito</h1>
+    <p class="by">Creado por <strong>Kirito</strong></p>
+  </header>
+
+  <main class="layout">
+    <section class="game">
+      <div class="player" id="playerTop">
+        <span class="dot" id="dotTop"></span>
+        <span class="pname" id="nameTop">Negras</span>
+        <span class="captured" id="capTop"></span>
+      </div>
+
+      <div class="board-wrap">
+        <div class="board" id="board" role="grid" aria-label="Tablero de ajedrez"></div>
+        <div class="promo hidden" id="promo" role="dialog" aria-label="Elige pieza de coronación">
+          <div class="promo-box">
+            <p>Corona tu peón</p>
+            <div class="promo-btns" id="promoBtns"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="player" id="playerBottom">
+        <span class="dot" id="dotBottom"></span>
+        <span class="pname" id="nameBottom">Blancas</span>
+        <span class="captured" id="capBottom"></span>
+      </div>
+
+      <div class="status" id="status" aria-live="polite">Turno de Blancas</div>
+    </section>
+
+    <aside class="panel">
+      <div class="tabs" role="tablist">
+        <button class="tab active" id="tabLocal" role="tab">Local (mismo dispositivo)</button>
+        <button class="tab" id="tabOnline" role="tab">Online (2 jugadores)</button>
+      </div>
+
+      <div class="card hidden" id="onlinePanel">
+        <div id="onlineMenu">
+          <button class="btn primary" id="btnCreate">Crear sala</button>
+          <div class="join">
+            <input id="joinCode" maxlength="6" placeholder="CÓDIGO" autocomplete="off" spellcheck="false">
+            <button class="btn" id="btnJoin">Unirse</button>
+          </div>
+        </div>
+        <div class="room hidden" id="roomBox">
+          <p>Código de sala: <strong class="code" id="roomCode">------</strong></p>
+          <div class="row">
+            <button class="btn" id="btnCopy">Copiar enlace</button>
+            <button class="btn" id="btnLeave">Salir</button>
+          </div>
+        </div>
+        <p class="net" id="netMsg">Crea una sala y comparte el código o el enlace con tu rival.</p>
+      </div>
+
+      <div class="card">
+        <h2>Jugadas</h2>
+        <ol class="moves" id="moves"></ol>
+        <div class="row wrap">
+          <button class="btn" id="btnNew">Nueva partida</button>
+          <button class="btn" id="btnFlip">Girar tablero</button>
+          <button class="btn" id="btnUndo">Deshacer</button>
+          <button class="btn" id="btnDraw">Tablas</button>
+          <button class="btn danger" id="btnResign">Rendirse</button>
+        </div>
+      </div>
+
+      <div class="card hidden" id="chatPanel">
+        <h2>Chat</h2>
+        <div class="chat-log" id="chatLog"></div>
+        <form class="chat-form" id="chatForm" autocomplete="off">
+          <input id="chatInput" maxlength="300" placeholder="Escribe un mensaje…">
+          <button class="btn" type="submit">Enviar</button>
+        </form>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="foot">
+    Ajedrez Kirito · Creado por <strong>Kirito</strong> · Licencia MIT
+  </footer>
+
+  <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+  <script src="chess.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
